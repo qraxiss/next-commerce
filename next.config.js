@@ -6,8 +6,10 @@ if (!URL.canParse(process.env.WORDPRESS_API_URL)) {
 }
 
 const { protocol, hostname, port, pathname } = new URL(
-  process.env.WORDPRESS_API_URL,
+  process.env.WORDPRESS_API_URL
 );
+
+console.log(pathname);
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -18,6 +20,10 @@ module.exports = {
         hostname,
         port,
         pathname: `${pathname}/**`,
+      },
+      {
+        protocol: "http",
+        hostname: "2.gravatar.com",
       },
     ],
   },
