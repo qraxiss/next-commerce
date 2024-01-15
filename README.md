@@ -14,28 +14,28 @@ Once you have access to [the environment variables you'll need](#step-3-set-up-e
 
 ### Related examples
 
-- [AgilityCMS](/examples/cms-agilitycms)
-- [Builder.io](/examples/cms-builder-io)
-- [ButterCMS](/examples/cms-buttercms)
-- [Contentful](/examples/cms-contentful)
-- [Cosmic](/examples/cms-cosmic)
-- [DatoCMS](/examples/cms-datocms)
-- [DotCMS](/examples/cms-dotcms)
-- [Drupal](/examples/cms-drupal)
-- [Enterspeed](/examples/cms-enterspeed)
-- [Ghost](/examples/cms-ghost)
-- [GraphCMS](/examples/cms-graphcms)
-- [Kontent](/examples/cms-kontent-ai)
-- [Prepr](/examples/cms-prepr)
-- [Prismic](/examples/cms-prismic)
-- [Sanity](/examples/cms-sanity)
-- [Sitefinity](/examples/cms-sitefinity)
-- [Storyblok](/examples/cms-storyblok)
-- [TakeShape](/examples/cms-takeshape)
-- [Umbraco heartcore](/examples/cms-umbraco-heartcore)
-- [Webiny](/examples/cms-webiny)
-- [Blog Starter](/examples/blog-starter)
-- [WordPress](/examples/cms-wordpress)
+-   [AgilityCMS](/examples/cms-agilitycms)
+-   [Builder.io](/examples/cms-builder-io)
+-   [ButterCMS](/examples/cms-buttercms)
+-   [Contentful](/examples/cms-contentful)
+-   [Cosmic](/examples/cms-cosmic)
+-   [DatoCMS](/examples/cms-datocms)
+-   [DotCMS](/examples/cms-dotcms)
+-   [Drupal](/examples/cms-drupal)
+-   [Enterspeed](/examples/cms-enterspeed)
+-   [Ghost](/examples/cms-ghost)
+-   [GraphCMS](/examples/cms-graphcms)
+-   [Kontent](/examples/cms-kontent-ai)
+-   [Prepr](/examples/cms-prepr)
+-   [Prismic](/examples/cms-prismic)
+-   [Sanity](/examples/cms-sanity)
+-   [Sitefinity](/examples/cms-sitefinity)
+-   [Storyblok](/examples/cms-storyblok)
+-   [TakeShape](/examples/cms-takeshape)
+-   [Umbraco heartcore](/examples/cms-umbraco-heartcore)
+-   [Webiny](/examples/cms-webiny)
+-   [Blog Starter](/examples/blog-starter)
+-   [WordPress](/examples/cms-wordpress)
 
 ## How to use
 
@@ -61,16 +61,16 @@ First, you need a WordPress site. There are many solutions for WordPress hosting
 
 Once the site is ready, you'll need to install the [WPGraphQL](https://www.wpgraphql.com/) plugin. It will add GraphQL API to your WordPress site, which we'll use to query the posts. Follow these steps to install it:
 
-- Download the [WPGraphQL repo](https://github.com/wp-graphql/wp-graphql) as a ZIP archive.
-- Inside your WordPress admin, go to **Plugins** and then click **Add New**.
+-   Download the [WPGraphQL repo](https://github.com/wp-graphql/wp-graphql) as a ZIP archive.
+-   Inside your WordPress admin, go to **Plugins** and then click **Add New**.
 
 ![Add new plugin](./docs/plugins-add-new.png)
 
-- Click the **Upload Plugin** button at the top of the page and upload the WPGraphQL plugin.
+-   Click the **Upload Plugin** button at the top of the page and upload the WPGraphQL plugin.
 
 ![Upload new plugin](./docs/plugins-upload-new.png)
 
-- Once the plugin has been added, activate it from either the **Activate Plugin** button displayed after uploading or from the **Plugins** page.
+-   Once the plugin has been added, activate it from either the **Activate Plugin** button displayed after uploading or from the **Plugins** page.
 
 ![WPGraphQL installed](./docs/plugin-installed.png)
 
@@ -84,11 +84,11 @@ The [WPGraphQL](https://www.wpgraphql.com/) plugin also gives you access to a Gr
 
 Inside your WordPress admin, go to **Posts** and start adding new posts:
 
-- We recommend creating at least **2 posts**
-- Use dummy data for the content
-- Pick an author from your WordPress users
-- Add a **Featured Image**. You can download one from [Unsplash](https://unsplash.com/)
-- Fill the **Excerpt** field
+-   We recommend creating at least **2 posts**
+-   Use dummy data for the content
+-   Pick an author from your WordPress users
+-   Add a **Featured Image**. You can download one from [Unsplash](https://unsplash.com/)
+-   Fill the **Excerpt** field
 
 ![New post](./docs/new-post.png)
 
@@ -140,8 +140,8 @@ To add [authentication to WPGraphQL](https://docs.wpgraphql.com/guides/authentic
 
 Once that's done, you'll need to access the WordPress filesystem to add the secret required to validate JWT tokens. We recommend using SFTP — the instructions vary depending on your hosting provider. For example:
 
-- [SFTP guide for WP Engine](https://wpengine.com/support/sftp/)
-- [SFTP guide for WordPress.com](https://wordpress.com/support/sftp/)
+-   [SFTP guide for WP Engine](https://wpengine.com/support/sftp/)
+-   [SFTP guide for WordPress.com](https://wordpress.com/support/sftp/)
 
 Once you have SFTP access, open `wp-config.php` and add a secret for your JWT:
 
@@ -155,22 +155,16 @@ Now, you need to get a **refresh token** to make authenticated requests with Gra
 
 ```graphql
 mutation Login {
-  login(
-    input: {
-      clientMutationId: "uniqueId"
-      password: "your_password"
-      username: "your_username"
+    login(input: { clientMutationId: "uniqueId", password: "your_password", username: "your_username" }) {
+        refreshToken
     }
-  ) {
-    refreshToken
-  }
 }
 ```
 
 Copy the `refreshToken` returned by the mutation, then open `.env.local`, and make the following changes:
 
-- Uncomment `WORDPRESS_AUTH_REFRESH_TOKEN` and set it to be the `refreshToken` you just received.
-- Uncomment `WORDPRESS_PREVIEW_SECRET` and set it to be any random string (ideally URL friendly).
+-   Uncomment `WORDPRESS_AUTH_REFRESH_TOKEN` and set it to be the `refreshToken` you just received.
+-   Uncomment `WORDPRESS_PREVIEW_SECRET` and set it to be any random string (ideally URL friendly).
 
 Your `.env.local` file should look like this:
 
@@ -196,9 +190,9 @@ To enable Preview Mode, go to this URL:
 http://localhost:3000/api/preview?secret=<secret>&id=<id>
 ```
 
-- `<secret>` should be the string you entered for `WORDPRESS_PREVIEW_SECRET`.
-- `<id>` should be the post's `databaseId` field, which is the integer that you usually see in the URL (`?post=18` → 18).
-- Alternatively, you can use `<slug>` instead of `<id>`. `<slug>` is generated based on the title.
+-   `<secret>` should be the string you entered for `WORDPRESS_PREVIEW_SECRET`.
+-   `<id>` should be the post's `databaseId` field, which is the integer that you usually see in the URL (`?post=18` → 18).
+-   Alternatively, you can use `<slug>` instead of `<id>`. `<slug>` is generated based on the title.
 
 You should now be able to see this post. To exit Preview Mode, you can click on **Click here to exit preview mode** at the top.
 
